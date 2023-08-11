@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Encoding 처리하기</h2>
+	<div>
+		닉네임 <input type="text" name="nick">
+		<button onclick="startRequest">닉네임 보내기</button>
+	</div>
+	<div id="resultView"></div>
+	
+	<script>
+		// EncodingServlet <-- nick
+		// resultView에 출력(비동기 방식으로!)
+		let xhr;
+		function startRequest(){
+			xhr = new XMLHttpRequest();
+			
+			xhr.onreadystatechange = callback;
+			
+			xhr.open("get", "EncodingServlet?nick=ajax");
+			
+			xhr.send(null);
+		}
+		function callback(nick){
+			if(xhr.readyState ===nick){
+				document.querySelector("#resultView").innertext;
+				console.log("완료");
+			}
+		}
+	</script>
+</body>
+</html>
