@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package servlet.controller.component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,3 +28,34 @@ public class LoginController implements Controller {
 	}
 
 }
+=======
+package servlet.controller.component;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import servlet.controller.Controller;
+import servlet.controller.ModelAndView;
+import servlet.model.dao.MemberDAO;
+import servlet.model.vo.MemberVO;
+
+public class LoginController implements Controller {
+
+	@Override
+	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
+		
+		MemberVO vo = MemberDAO.getInstance().login(id, password);
+		HttpSession session = request.getSession();
+		if(vo!=null) {
+			session.setAttribute("vo", vo);
+		}
+		
+		return new ModelAndView("views/login_result.jsp", true);
+	}
+
+}
+>>>>>>> 39962ce69ee23085eb516ff40cf41f72958c13ab
